@@ -11,7 +11,7 @@ const DEFAULT_CONFIG = {
     { path: "profile/changePassword", component: ChangePasswordPage },
     { path: "profile/myProfile", component: MyProfilePage },
   ],
-  "core.MainMenu": [ProfileMainMenu],
+  "core.MainMenu": [{ name: 'ProfileMainMenu', component: ProfileMainMenu }],
   reducers: [{ key: "profile", reducer }],
   "core.AppBar": [ProfileToolbarContribution]
 
