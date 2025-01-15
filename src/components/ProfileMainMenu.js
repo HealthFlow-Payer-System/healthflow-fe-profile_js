@@ -50,6 +50,7 @@ class ProfileMainMenu extends Component {
         header={formatMessage(intl, "profile", "mainMenu")}
         icon={<AccountCircle />}
         entries={entries}
+        menuId='ProfileMainMenu'
       />
     );
   }
