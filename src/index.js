@@ -1,3 +1,6 @@
+import React from 'react';
+import { Fingerprint, InsertEmoticon } from "@material-ui/icons";
+import { FormattedMessage } from '@openimis/fe-core';
 import ProfileToolbarContribution from "./components/ProfileToolbarContribution";
 import ProfileMainMenu from "./components/ProfileMainMenu";
 import ChangePasswordPage from "./components/ChangePasswordPage";
@@ -13,8 +16,21 @@ const DEFAULT_CONFIG = {
   ],
   "core.MainMenu": [{ name: 'ProfileMainMenu', component: ProfileMainMenu }],
   reducers: [{ key: "profile", reducer }],
-  "core.AppBar": [ProfileToolbarContribution]
-
+  "core.AppBar": [ProfileToolbarContribution],
+  "profile.MainMenu": [
+    {
+      text: <FormattedMessage module="profile" id="menu.myProfile" />,
+      icon: <InsertEmoticon />,
+      route: "/profile/myProfile",
+      id: "profile.myProfile",
+    },
+    {
+      text: <FormattedMessage module="profile" id="menu.changePassword" />,
+      icon: <Fingerprint />,
+      route: "/profile/changePassword",
+      id: "profile.changePassword",
+    }
+  ],
 };
 
 export const ProfileModule = (cfg) => {
