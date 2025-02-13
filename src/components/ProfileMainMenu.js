@@ -25,6 +25,7 @@ class ProfileMainMenu extends Component {
         text: formatMessage(intl, "profile", "menu.myProfile"),
         icon: <InsertEmoticon />,
         route: "/profile/myProfile",
+        id: "profile.myProfile",
       },
     ];
 
@@ -33,6 +34,7 @@ class ProfileMainMenu extends Component {
         text: formatMessage(intl, "profile", "menu.changePassword"),
         icon: <Fingerprint />,
         route: "/profile/changePassword",
+        id: "profile.changePassword",
       });
     }
 
@@ -48,6 +50,7 @@ class ProfileMainMenu extends Component {
         header={formatMessage(intl, "profile", "mainMenu")}
         icon={<AccountCircle />}
         entries={entries}
+        menuId='ProfileMainMenu'
       />
     );
   }
