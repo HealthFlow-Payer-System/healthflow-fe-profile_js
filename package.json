@@ -39,6 +39,9 @@
     "dist"
   ],
   "dependencies": {
-    "react-window": "^1.8.8"
+    "react-window": "^1.8.8",
+    "@mui/material": "^5.15.0",
+    "@mui/icons-material": "^5.15.0",
+    "@mui/styles": "^5.15.0"
   }
 }

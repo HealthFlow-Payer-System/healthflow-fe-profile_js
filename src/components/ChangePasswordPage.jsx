@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
-import { Box, Button, Paper, Typography, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { Box, Button, Paper, Typography, Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import {
   useGraphqlMutation,
   useTranslations,
