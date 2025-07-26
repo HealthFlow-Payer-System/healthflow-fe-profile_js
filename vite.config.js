@@ -1,46 +1,120 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+
+const noExternal = [
+  '@mui/material',
+  '@mui/utils',
+  '@mui/system',
+  '@mui/icons-material',
+  '@mui/styled-engine',
+  '@emotion/react',
+  '@emotion/styled',
+  '@emotion/cache'
+];
 
 export default defineConfig({
   plugins: [
-    react()
+    react({
+      jsxImportSource: '@emotion/react',
+      babel: {
+        plugins: ['@emotion/babel-plugin'],
+      },
+    }),
   ],
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production'),
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@emotion/react': path.resolve(
+        __dirname,
+        'node_modules/@emotion/react'
+      ),
+      '@emotion/styled': path.resolve(
+        __dirname,
+        'node_modules/@emotion/styled'
+      ),
+      '@emotion/cache': path.resolve(
+        __dirname,
+        'node_modules/@emotion/cache'
+      ),
+    },
+  },
+  optimizeDeps: {
+    include: [
+      '@emotion/react',
+      '@emotion/styled',
+      '@emotion/cache',
+      '@mui/material',
+      '@mui/icons-material',
+      '@mui/system',
+    ],
+    force: true,
+  },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.jsx'),
+      entry: path.resolve(__dirname, 'src/index.jsx'),
       name: 'OpenIMISFeProfile',
+      fileName: (format) => `index.${format}.js`,
       formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format}.js`
     },
-    sourcemap: true,
-    outDir: 'dist',
     rollupOptions: {
       external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        'redux',
+        'redux-api-middleware',
+        'react-redux',
+        'react-intl',
+        'prop-types',
+        'moment',
+        'lodash',
+        /^lodash\/.*/,
+        'lodash-uuid',
+        'classnames',
+        'clsx',
+        'react-autosuggest',
+        'react-router',
+        'react-router-dom',
+        'history',
+        '@emotion/react',
+        '@emotion/styled',
+        '@emotion/cache',
+        '@mui/material',
+        '@mui/icons-material',
+        '@mui/system',
+        '@mui/styles',
+        '@material-ui/lab',
+        '@material-ui/pickers',
+        '@date-io/core',
+        '@date-io/moment',
+        'flat',
         /^@babel.*/,
         /^@date-io\/.*/,
         /^@material-ui\/.*/,
         /^@openimis.*/,
-        'classnames',
-        'clsx',
-        'history',
-        /^lodash.*/,
-        'moment',
-        'prop-types',
-        /^react.*/,
-        /^redux.*/
       ],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    }
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsxRuntime',
+          'react/jsx-dev-runtime': 'jsxDevRuntime',
+          '@emotion/react': 'EmotionReact',
+          '@emotion/styled': 'EmotionStyled',
+          '@mui/material': 'MuiMaterial',
+        },
+      },
+    },
+    sourcemap: true,
+    outDir: 'dist',
+    emptyOutDir: true,
   },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src')
-    }
-  }
-})
+  ssr: {
+    noExternal,
+  },
+});
