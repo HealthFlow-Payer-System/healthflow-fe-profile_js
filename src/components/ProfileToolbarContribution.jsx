@@ -16,17 +16,14 @@ import {
 } from "@mui/material";
 
 
-import { makeStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 
 const PROFILE_MAIN_MENU_CONTRIBUTION_KEY = "profile.MainMenu";
 
-
-const useStyles = makeStyles((theme) => ({
-  menu: {
-    margin: theme.spacing(2),
-    color: theme.palette.secondary.main,
-  },
+const StyledMenu = styled('div')(({ theme }) => ({
+  margin: theme.spacing(2),
+  color: theme.palette.secondary.main,
 }));
 
 const ProfileToolbarContribution = (props) => {
@@ -45,7 +42,7 @@ const ProfileToolbarContribution = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  const classes = useStyles();
+
 
   const   redirect = (route) => {
     historyPush(modulesManager, history, route);
@@ -76,12 +73,12 @@ const ProfileToolbarContribution = (props) => {
 
   return (
     <>
-      <IconButton 
-        className={classes.menu} 
+      <StyledMenu 
+        as={IconButton}
         onClick={handleClick} // Here you trigger the click to open the menu
       >
         <AccountCircle />
-      </IconButton>
+      </StyledMenu>
       <Popover
         id={id}
         open={open}

@@ -4,7 +4,7 @@ import path from 'path';
 
 const noExternal = [
   '@mui/material',
-  '@mui/utils',
+  
   '@mui/system',
   '@mui/icons-material',
   '@mui/styled-engine',
@@ -88,14 +88,13 @@ export default defineConfig({
         '@mui/icons-material',
         '@mui/system',
         '@mui/styles',
-        '@material-ui/lab',
-        '@material-ui/pickers',
+       
         '@date-io/core',
         '@date-io/moment',
         'flat',
         /^@babel.*/,
         /^@date-io\/.*/,
-        /^@material-ui\/.*/,
+    
         /^@openimis.*/,
       ],
       output: {
