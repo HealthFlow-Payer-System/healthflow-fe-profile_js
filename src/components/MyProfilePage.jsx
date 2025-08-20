@@ -87,7 +87,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="userName"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid item xs={4}>
                   <TextInput
                     module="profile"
                     label="userName"
@@ -104,7 +104,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="otherNames"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid item xs={4}>
                   <TextInput
                     module="profile"
                     label="otherNames"
@@ -121,7 +121,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="LastName"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid item xs={4}>
                   <TextInput
                     module="profile"
                     label="lastName"
@@ -138,7 +138,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="email"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid item xs={4}>
                   <TextInput
                     module="profile"
                     label="email"
@@ -155,7 +155,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="phone"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid item xs={4}>
                   <TextInput
                     module="profile"
                     label="phone"
@@ -172,7 +172,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="language"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid item xs={4}>
                   <TextInput
                     module="profile"
                     label="language"
