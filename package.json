@@ -16,9 +16,9 @@
     "prepare": "npm run build"
   },
   "peerDependencies": {
-    "react": ">=18.2.0",
-    "react-dom": ">=18.2.0",
-    "react-intl": "^5.8.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intl": "^5.25.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -36,7 +36,9 @@
     "react-autosuggest": "^10.0.2",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
-    "redux-api-middleware": "^3.2.1"
+    "redux-api-middleware": "^3.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "files": [
     "dist"
