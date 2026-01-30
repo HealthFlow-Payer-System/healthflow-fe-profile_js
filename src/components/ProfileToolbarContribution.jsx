@@ -113,4 +113,5 @@ const ProfileToolbarContribution = (props) => {
   );
 };
 
+export { PROFILE_MAIN_MENU_CONTRIBUTION_KEY };
 export default injectIntl(withModulesManager(ProfileToolbarContribution));

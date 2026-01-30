@@ -67,7 +67,7 @@ const ChangePasswordPage = (props) => {
         <Box padding="10px">
           <form onSubmit={onSubmit}>
             <Grid container spacing={2}>
-              <Grid xs={4} item>
+              <Grid size={4}>
                 <TextInput
                   module="profile"
                   required
@@ -77,7 +77,7 @@ const ChangePasswordPage = (props) => {
                   onChange={(oldPassword) => setFormValues({ ...formValues, oldPassword })}
                 />
               </Grid>
-              <Grid xs={4} item>
+              <Grid size={4}>
                 <TextInput
                   module="profile"
                   required
@@ -87,7 +87,7 @@ const ChangePasswordPage = (props) => {
                   onChange={(password) => setFormValues({ ...formValues, password })}
                 />
               </Grid>
-              <Grid xs={4} item>
+              <Grid size={4}>
                 <TextInput
                   module="profile"
                   readOnly={isLoading}
@@ -98,16 +98,16 @@ const ChangePasswordPage = (props) => {
                 />
               </Grid>
               {formValues.password !== formValues.confirmPassword && formValues.confirmPassword && formValues.password && (
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Box color="error.main">{formatMessage("notEqualError")}</Box>
                 </Grid>
               )}
               {error && (
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Box color="error.main">{error}</Box>
                 </Grid>
               )}
-              <Grid item>
+              <Grid>
                 <Button type="submit" color="primary" variant="contained" disabled={!isValid || isLoading}>
                   {formatMessage("submitButton")}
                 </Button>

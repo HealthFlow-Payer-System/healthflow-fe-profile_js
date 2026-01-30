@@ -60,6 +60,8 @@ const mapStateToProps = (state) => ({
   rights: state.core?.user?.i_user?.rights ?? [],
 });
 
+export { PROFILE_MAIN_MENU_CONTRIBUTION_KEY };
+export { ProfileMainMenu };
 export default injectIntl(
   withModulesManager(connect(mapStateToProps)(ProfileMainMenu))
 );
