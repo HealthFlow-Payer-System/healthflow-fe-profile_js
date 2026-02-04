@@ -25,15 +25,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRoles } from "../action.js";
 
 const StyledPage = styled('div')(({ theme }) => ({
-  ...theme.page,
+  ...theme.page ?? {},
 }));
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  ...theme.paper.paper,
+  ...theme.paper?.paper ?? {},
 }));
 
 const StyledTitle = styled('div')(({ theme }) => ({
-  ...theme.paper.title,
+  ...theme.paper?.title ?? {},
 }));
 
 const StyledContainer = styled(TableContainer)(() => ({

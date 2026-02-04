@@ -10,15 +10,15 @@ import {
 } from "@openimis/fe-core";
 
 const StyledPage = styled(Box)(({ theme }) => ({
-  ...theme.page,
+  ...theme.page ?? {},
 }));
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  ...theme.paper.paper,
+  ...theme.paper?.paper ?? {},
 }));
 
 const StyledTitle = styled(Typography)(({ theme }) => ({
-  ...theme.paper.title,
+  ...theme.paper?.title ?? {},
 }));
 
 const ChangePasswordPage = (props) => {
