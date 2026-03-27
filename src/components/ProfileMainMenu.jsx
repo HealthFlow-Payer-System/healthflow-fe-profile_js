@@ -15,37 +15,13 @@ const PROFILE_MAIN_MENU_CONTRIBUTION_KEY = "profile.MainMenu";
 class ProfileMainMenu extends Component {
 
   render() {
-    const { rights, intl, modulesManager } = this.props;
-    let entries = [
-      {
-        text: formatMessage(intl, "profile", "menu.myProfile"),
-        icon: <InsertEmoticon />,
-        route: "/profile/myProfile",
-        id: "profile.myProfile",
-      },
-    ];
-
-    entries.push({
-        text: formatMessage(intl, "profile", "menu.changePassword"),
-        icon: <Fingerprint />,
-        route: "/profile/changePassword",
-        id: "profile.changePassword",
-      });
-    
-
-    entries.push(
-      ...modulesManager
-        .getContribs(PROFILE_MAIN_MENU_CONTRIBUTION_KEY)
-        .filter((c) => !c.filter || c.filter(rights))
-    );
-
     return (
       <MainMenuContribution
         {...this.props}
-        header={formatMessage(intl, "profile", "mainMenu")}
+        header={formatMessage(this.props.intl, "profile", "mainMenu")}
         icon={<AccountCircle />}
-        entries={entries}
         menuId='ProfileMainMenu'
+        contributionKey={PROFILE_MAIN_MENU_CONTRIBUTION_KEY}
       />
     );
   }
