@@ -13,10 +13,6 @@ import {
 const PROFILE_MAIN_MENU_CONTRIBUTION_KEY = "profile.MainMenu";
 
 class ProfileMainMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.isWorker = props.modulesManager.getConf("fe-core", "isWorker", false);
-  }
 
   render() {
     const { rights, intl, modulesManager } = this.props;
@@ -29,14 +25,13 @@ class ProfileMainMenu extends Component {
       },
     ];
 
-    if (!this.isWorker) {
-      entries.push({
+    entries.push({
         text: formatMessage(intl, "profile", "menu.changePassword"),
         icon: <Fingerprint />,
         route: "/profile/changePassword",
         id: "profile.changePassword",
       });
-    }
+    
 
     entries.push(
       ...modulesManager
