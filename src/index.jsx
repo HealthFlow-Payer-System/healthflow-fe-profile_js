@@ -1,5 +1,8 @@
 import React from 'react';
-import { Fingerprint, InsertEmoticon } from "@mui/icons-material";
+import { GetIconComponent } from "@openimis/fe-core";
+const Fingerprint = GetIconComponent("Fingerprint")
+const InsertEmoticon = GetIconComponent("InsertEmoticon")
+
 import { FormattedMessage } from '@openimis/fe-core';
 import ProfileToolbarContribution from "./components/ProfileToolbarContribution";
 import ProfileMainMenu from "./components/ProfileMainMenu";
@@ -11,8 +14,8 @@ import { reducer } from "./reducer";
 const DEFAULT_CONFIG = {
   translations: [{ key: "en", messages: messages_en }],
   "core.Router": [
-    { path: "profile/changePassword", component: ChangePasswordPage },
-    { path: "profile/myProfile", component: MyProfilePage },
+    { path: "profile/changePassword", component: ChangePasswordPage, rights: ['profile.changePassword'], icon: Fingerprint },
+    { path: "profile/myProfile", component: MyProfilePage, rights: ['profile.myProfile'], icon: InsertEmoticon },
   ],
   "core.MainMenu": [{ name: 'ProfileMainMenu', component: ProfileMainMenu }],
   reducers: [{ key: "profile", reducer }],

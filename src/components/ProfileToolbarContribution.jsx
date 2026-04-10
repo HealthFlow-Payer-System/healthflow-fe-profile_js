@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { injectIntl } from 'react-intl';
-import { AccountCircle, Fingerprint, InsertEmoticon } from "@mui/icons-material";
+import { GetIconComponent } from "@openimis/fe-core";
+const AccountCircle = GetIconComponent("AccountCircle")
+const  Fingerprint   = GetIconComponent("Fingerprint")
+const  InsertEmoticon   = GetIconComponent("InsertEmoticon")
 import {
   formatMessage,
   withModulesManager

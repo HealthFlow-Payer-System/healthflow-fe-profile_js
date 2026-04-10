@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 
-import { AccountCircle, Fingerprint, InsertEmoticon } from "@mui/icons-material";
+import { GetIconComponent } from "@openimis/fe-core";
+const AccountCircle = GetIconComponent("AccountCircle")
 
 import {
   formatMessage,
