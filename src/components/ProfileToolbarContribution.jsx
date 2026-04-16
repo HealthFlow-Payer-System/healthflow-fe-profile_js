@@ -59,12 +59,12 @@ const ProfileToolbarContribution = (props) => {
       {
         text: formatMessage(props.intl, "profile", "menu.myProfile"),
         icon: <InsertEmoticon />,
-        route: "/profile/myProfile",
+        route: "profile/myProfile",
       },
       {
         text: formatMessage(props.intl, "profile", "menu.changePassword"),
         icon: <Fingerprint />,
-        route: "/profile/changePassword",
+        route: "profile/changePassword",
       },
     ];
     entries.push(

@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { injectIntl } from "react-intl";
+import { useDispatch, useSelector, connect } from "react-redux";
+
 import {
   Box,
   Paper,
@@ -19,9 +22,10 @@ import {
   FormattedMessage,
   ProgressOrError,
   ControlledField,
+  withHistory,
+  withModulesManager,
 } from "@openimis/fe-core";
 
-import { useDispatch, useSelector } from "react-redux";
 import { fetchRoles } from "../action.js";
 
 const StyledPage = styled('div')(({ theme }) => ({
@@ -192,8 +196,8 @@ const MyProfilePage = (props) => {
                     <TableRow>
                       <TableCell
                         style={{
-                          "font-weight": "bold",
-                          "text-align": "center",
+                          "fontWeight": "bold",
+                          "textAlign": "center",
                         }}
                       >
                         <FormattedMessage module="profile" id="roles" />
@@ -220,8 +224,8 @@ const MyProfilePage = (props) => {
                     <TableRow>
                       <TableCell
                         style={{
-                          "font-weight": "bold",
-                          "text-align": "center",
+                          "fontWeight": "bold",
+                          "textAlign": "center",
                         }}
                       >
                         <FormattedMessage module="profile" id="regions" />
@@ -252,8 +256,8 @@ const MyProfilePage = (props) => {
                     <TableRow>
                       <TableCell
                         style={{
-                          "font-weight": "bold",
-                          "text-align": "center",
+                          "fontWeight": "bold",
+                          "textAlign": "center",
                         }}
                       >
                         <FormattedMessage module="profile" id="districts" />
@@ -280,4 +284,14 @@ const MyProfilePage = (props) => {
   );
 };
 
-export default MyProfilePage;
+const mapStateToProps = (state) => ({
+  module: state.core?.savedPagination?.module,
+  user: state.core?.user,
+});
+const mapDispatchToProps = null;
+
+export default withHistory(
+  withModulesManager(
+    connect(mapStateToProps, mapDispatchToProps)(injectIntl(MyProfilePage)),
+  ),
+);

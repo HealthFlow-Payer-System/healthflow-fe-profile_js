@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from "react";
+import { connect } from "react-redux";
+import { injectIntl } from "react-intl";
+
 import { Box, Button, Paper, Typography, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import {
@@ -7,6 +10,8 @@ import {
   useModulesManager,
   TextInput,
   useAuthentication,
+  withHistory,
+  withModulesManager,
 } from "@openimis/fe-core";
 
 const StyledPage = styled(Box)(({ theme }) => ({
@@ -120,4 +125,14 @@ const ChangePasswordPage = (props) => {
   );
 };
 
-export default ChangePasswordPage;
+const mapStateToProps = (state) => ({
+  module: state.core?.savedPagination?.module,
+  user: state.core?.user,
+});
+const mapDispatchToProps = null;
+
+export default withHistory(
+  withModulesManager(
+    connect(mapStateToProps, mapDispatchToProps)(injectIntl(ChangePasswordPage)),
+  ),
+);
