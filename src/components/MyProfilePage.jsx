@@ -140,6 +140,23 @@ const MyProfilePage = (props) => {
 
             <ControlledField
               module="profile"
+              id="language"
+              field={
+                <Grid size={4}>
+                  <TextInput
+                    module="profile"
+                    label={formatMessage("defaultRowsPerPage")}
+                    name="defaultRowsPerPage"
+                    value={user?.iUser?.defaultRowsPerPage}
+                    variant="outlined"
+                    readOnly={true}
+                  />
+                </Grid>
+              }
+            />
+
+            <ControlledField
+              module="profile"
               id="email"
               field={
                 <Grid size={4}>
@@ -275,7 +292,7 @@ const MyProfilePage = (props) => {
                       ))}
                   </TableBody>
                 </Table>
-                              </StyledContainer>
+              </StyledContainer>
             </Grid>
           </Grid>
         </Box>
