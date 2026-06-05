@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { injectIntl } from "react-intl";
+import { useDispatch, useSelector, connect } from "react-redux";
+
 import {
   Box,
   Paper,
@@ -10,8 +13,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 import {
   useTranslations,
   useModulesManager,
@@ -19,22 +22,30 @@ import {
   FormattedMessage,
   ProgressOrError,
   ControlledField,
+  withHistory,
+  withModulesManager,
 } from "@openimis/fe-core";
 
-import { useDispatch, useSelector } from "react-redux";
 import { fetchRoles } from "../action.js";
 
-const useStyles = makeStyles((theme) => ({
-  page: theme.page,
-  paper: theme.paper.paper,
-  title: theme.paper.title,
-  container: {
-    maxHeight: 700,
-  },
+const StyledPage = styled('div')(({ theme }) => ({
+  ...theme.page ?? {},
+}));
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  ...theme.paper?.paper ?? {},
+}));
+
+const StyledTitle = styled('div')(({ theme }) => ({
+  ...theme.paper?.title ?? {},
+}));
+
+const StyledContainer = styled(TableContainer)(() => ({
+  maxHeight: 700,
 }));
 
 const MyProfilePage = (props) => {
-  const classes = useStyles();
+
   const modulesManager = useModulesManager();
   const { formatMessage } = useTranslations(
     "profile.MyProfilePage",
@@ -66,11 +77,13 @@ const MyProfilePage = (props) => {
   }, []);
 
   return (
-    <Box className={classes.page}>
-      <Paper className={classes.paper}>
-        <Typography className={classes.title} variant="h6">
-          {formatMessage("title")}
-        </Typography>
+    <StyledPage>
+      <StyledPaper>
+        <StyledTitle>
+          <Typography variant="h6">
+            {formatMessage("title")}
+          </Typography>
+        </StyledTitle>
         <Box padding="10px">
           <ProgressOrError progress={fetchingUser} error={errorUser} />
           <Grid container spacing={2}>
@@ -78,7 +91,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="userName"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid size={4}>
                   <TextInput
                     module="profile"
                     label="userName"
@@ -95,7 +108,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="otherNames"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid size={4}>
                   <TextInput
                     module="profile"
                     label="otherNames"
@@ -112,7 +125,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="LastName"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid size={4}>
                   <TextInput
                     module="profile"
                     label="lastName"
@@ -127,9 +140,26 @@ const MyProfilePage = (props) => {
 
             <ControlledField
               module="profile"
+              id="language"
+              field={
+                <Grid size={4}>
+                  <TextInput
+                    module="profile"
+                    label={formatMessage("defaultRowsPerPage")}
+                    name="defaultRowsPerPage"
+                    value={user?.iUser?.defaultRowsPerPage}
+                    variant="outlined"
+                    readOnly={true}
+                  />
+                </Grid>
+              }
+            />
+
+            <ControlledField
+              module="profile"
               id="email"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid size={4}>
                   <TextInput
                     module="profile"
                     label="email"
@@ -146,7 +176,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="phone"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid size={4}>
                   <TextInput
                     module="profile"
                     label="phone"
@@ -163,7 +193,7 @@ const MyProfilePage = (props) => {
               module="profile"
               id="language"
               field={
-                <Grid item xs={4} className={classes.item}>
+                <Grid size={4}>
                   <TextInput
                     module="profile"
                     label="language"
@@ -176,15 +206,15 @@ const MyProfilePage = (props) => {
               }
             />
 
-            <Grid item xs={4}>
-              <TableContainer component={Paper} className={classes.container}>
+            <Grid size={4}>
+              <StyledContainer component={Paper}>
                 <Table stickyHeader size="small" arial-label="Assigned Roles">
                   <TableHead>
                     <TableRow>
                       <TableCell
                         style={{
-                          "font-weight": "bold",
-                          "text-align": "center",
+                          "fontWeight": "bold",
+                          "textAlign": "center",
                         }}
                       >
                         <FormattedMessage module="profile" id="roles" />
@@ -202,17 +232,17 @@ const MyProfilePage = (props) => {
                       ))}
                   </TableBody>
                 </Table>
-              </TableContainer>
+                              </StyledContainer>
             </Grid>
-            <Grid item xs={4}>
-              <TableContainer component={Paper} className={classes.container}>
+            <Grid size={4}>
+              <StyledContainer component={Paper}>
                 <Table stickyHeader size="small" arial-label="Assigned Regions">
                   <TableHead>
                     <TableRow>
                       <TableCell
                         style={{
-                          "font-weight": "bold",
-                          "text-align": "center",
+                          "fontWeight": "bold",
+                          "textAlign": "center",
                         }}
                       >
                         <FormattedMessage module="profile" id="regions" />
@@ -230,10 +260,10 @@ const MyProfilePage = (props) => {
                       ))}
                   </TableBody>
                 </Table>
-              </TableContainer>
+                              </StyledContainer>
             </Grid>
-            <Grid item xs={4}>
-              <TableContainer component={Paper} className={classes.container}>
+            <Grid size={4}>
+              <StyledContainer component={Paper}>
                 <Table
                   stickyHeader
                   size="small"
@@ -243,8 +273,8 @@ const MyProfilePage = (props) => {
                     <TableRow>
                       <TableCell
                         style={{
-                          "font-weight": "bold",
-                          "text-align": "center",
+                          "fontWeight": "bold",
+                          "textAlign": "center",
                         }}
                       >
                         <FormattedMessage module="profile" id="districts" />
@@ -262,13 +292,23 @@ const MyProfilePage = (props) => {
                       ))}
                   </TableBody>
                 </Table>
-              </TableContainer>
+              </StyledContainer>
             </Grid>
           </Grid>
         </Box>
-      </Paper>
-    </Box>
+      </StyledPaper>
+    </StyledPage>
   );
 };
 
-export default MyProfilePage;
+const mapStateToProps = (state) => ({
+  module: state.core?.savedPagination?.module,
+  user: state.core?.user,
+});
+const mapDispatchToProps = null;
+
+export default withHistory(
+  withModulesManager(
+    connect(mapStateToProps, mapDispatchToProps)(injectIntl(MyProfilePage)),
+  ),
+);
